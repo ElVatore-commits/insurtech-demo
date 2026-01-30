@@ -1,217 +1,201 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="ru">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RiskEngine Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        body { background-color: #f8f9fa; padding-top: 20px; }
+        .card { margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .nav-pills .nav-link.active { background-color: #0d6efd; }
+        .status-badge { font-size: 0.8em; margin-left: 10px; }
+    </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="ru"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;RiskEngine Demo&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/vue@3/dist/vue.global.js"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>body { background-color: #f8f9fa; padding-top: 20px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.card { margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.nav-pills .nav-link.active { background-color: #0d6efd; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.status-badge { font-size: 0.8em; margin-left: 10px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;div id="app" class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="text-center mb-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h1&gt;🛡️ InsurTech Inspector&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="text-muted"&gt;Прототип системы автоматических рекомендаций&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;ul class="nav nav-pills mb-4 justify-content-center" id="pills-tab"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li class="nav-item"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="nav-link" :class="{ active: currentTab === 'admin' }" @click="currentTab = 'admin'"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>1. Админка (Инженер)</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li class="nav-item"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="nav-link" :class="{ active: currentTab === 'inspection' }" @click="currentTab = 'inspection'"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>2. Осмотр (Клиент)</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li class="nav-item"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="nav-link" :class="{ active: currentTab === 'report' }" @click="currentTab = 'report'"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>3. Отчет (Инженер)</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/ul&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div v-if="currentTab === 'admin'"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card-header bg-primary text-white"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>Конструктор правил (Knowledge Base)</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card-body"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;Здесь методологи задают логику: &lt;b&gt;Если найдено X → Рекомендовать Y&lt;/b&gt;&lt;/p&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="row g-3 align-items-end mb-3"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="col-md-5"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label class="form-label"&gt;Название риска (пункт анкеты)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="text" class="form-control" v-model="newRule.risk" placeholder="Напр: Отсутствует АПС"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="col-md-5"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label class="form-label"&gt;Авто-рекомендация&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="text" class="form-control" v-model="newRule.recommendation" placeholder="Напр: Установить датчики дыма"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="col-md-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button class="btn btn-success w-100" @click="addRule"&gt;Добавить&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;hr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h5&gt;Активные правила в базе:&lt;/h5&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul class="list-group"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li class="list-group-item d-flex justify-content-between align-items-center" v-for="(rule, index) in rules" :key="index"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;strong&gt;Если:&lt;/strong&gt; {{ rule.risk }} &lt;br&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="text-success"&gt;&lt;strong&gt;То:&lt;/strong&gt; {{ rule.recommendation }}&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button class="btn btn-sm btn-outline-danger" @click="deleteRule(index)"&gt;Удалить&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div v-if="currentTab === 'inspection'"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card-header bg-warning text-dark"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>Лист осмотра объекта</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card-body"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;Инженер проводит осмотр и отмечает выявленные недостатки.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="mb-3"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label class="form-label"&gt;Название объекта&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="text" class="form-control" v-model="inspectionData.objectName" placeholder="Склад ООО 'Ромашка'"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h5&gt;Чек-лист рисков:&lt;/h5&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div v-if="rules.length === 0" class="alert alert-warning"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>База знаний пуста. Зайдите в "Админку" и добавьте критерии осмотра.</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="form-check mb-2" v-for="(rule, index) in rules" :key="index"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input class="form-check-input" type="checkbox" :id="'risk'+index" :value="rule" v-model="inspectionData.selectedRisks"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label class="form-check-label" :for="'risk'+index"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>{{ rule.risk }}</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="btn btn-primary mt-3" @click="generateReport"&gt;Завершить осмотр и создать отчет&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div v-if="currentTab === 'report'"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card-header bg-success text-white"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>Итоговый отчет по рискам</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card-body" id="printArea"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h4&gt;Объект: {{ inspectionData.objectName || 'Не указан' }}&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;hr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h5&gt;Выявленные нарушения и рекомендации:&lt;/h5&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div v-if="inspectionData.selectedRisks.length === 0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-success"&gt;Нарушений не выявлено. Объект в идеальном состоянии.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;table class="table table-bordered mt-3" v-else&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;thead class="table-light"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;th&gt;Обнаруженный риск&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;th&gt;Автоматическая рекомендация&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/thead&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;tbody&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;tr v-for="item in inspectionData.selectedRisks"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;{{ item.risk }}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td class="text-success fw-bold"&gt;{{ item.recommendation }}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/tbody&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/table&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="alert alert-info mt-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>Это демо. В реальной системе эти данные уйдут в Word.</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="btn btn-outline-secondary" @click="currentTab = 'inspection'"&gt;Назад к осмотру&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const { createApp } = Vue</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>createApp({</p>
-<p class="p1"><span class="Apple-converted-space">        </span>data() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>return {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>currentTab: 'admin', // admin, inspection, report</p>
-<p class="p1"><span class="Apple-converted-space">                </span>// База знаний (по умолчанию пара примеров)</p>
-<p class="p1"><span class="Apple-converted-space">                </span>rules: [</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>{ risk: 'Отсутствует система пожаротушения', recommendation: 'Спроектировать и смонтировать АУПТ' },</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>{ risk: 'Горы мусора на территории', recommendation: 'Обеспечить регулярный вывоз ТБО' }</p>
-<p class="p1"><span class="Apple-converted-space">                </span>],</p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Данные для новой записи</p>
-<p class="p1"><span class="Apple-converted-space">                </span>newRule: { risk: '', recommendation: '' },</p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Данные текущего осмотра</p>
-<p class="p1"><span class="Apple-converted-space">                </span>inspectionData: {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>objectName: '',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>selectedRisks: []<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>},</p>
-<p class="p1"><span class="Apple-converted-space">        </span>mounted() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Пытаемся загрузить сохраненные данные из памяти браузера</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const savedRules = localStorage.getItem('demo_rules');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (savedRules) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.rules = JSON.parse(savedRules);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>},</p>
-<p class="p1"><span class="Apple-converted-space">        </span>methods: {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>addRule() {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if(this.newRule.risk &amp;&amp; this.newRule.recommendation) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>this.rules.push({ ...this.newRule });</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>this.newRule.risk = '';</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>this.newRule.recommendation = '';</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>this.saveRules();</p>
-<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>alert('Заполните оба поля!');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>},</p>
-<p class="p1"><span class="Apple-converted-space">            </span>deleteRule(index) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.rules.splice(index, 1);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.saveRules();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>},</p>
-<p class="p1"><span class="Apple-converted-space">            </span>saveRules() {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>localStorage.setItem('demo_rules', JSON.stringify(this.rules));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>},</p>
-<p class="p1"><span class="Apple-converted-space">            </span>generateReport() {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>this.currentTab = 'report';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}).mount('#app')</p>
-<p class="p1">&lt;/script&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+
+<div id="app" class="container">
+    <div class="text-center mb-4">
+        <h1>🛡️ InsurTech Inspector</h1>
+        <p class="text-muted">Прототип системы автоматических рекомендаций</p>
+    </div>
+
+    <ul class="nav nav-pills mb-4 justify-content-center" id="pills-tab">
+        <li class="nav-item">
+            <button class="nav-link" :class="{ active: currentTab === 'admin' }" @click="currentTab = 'admin'">
+                1. Админка (Инженер)
+            </button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" :class="{ active: currentTab === 'inspection' }" @click="currentTab = 'inspection'">
+                2. Осмотр (Клиент)
+            </button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" :class="{ active: currentTab === 'report' }" @click="currentTab = 'report'">
+                3. Отчет (Инженер)
+            </button>
+        </li>
+    </ul>
+
+    <div v-if="currentTab === 'admin'">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                Конструктор правил (Knowledge Base)
+            </div>
+            <div class="card-body">
+                <p>Здесь методологи задают логику: <b>Если найдено X → Рекомендовать Y</b></p>
+                
+                <div class="row g-3 align-items-end mb-3">
+                    <div class="col-md-5">
+                        <label class="form-label">Название риска (пункт анкеты)</label>
+                        <input type="text" class="form-control" v-model="newRule.risk" placeholder="Напр: Отсутствует АПС">
+                    </div>
+                    <div class="col-md-5">
+                        <label class="form-label">Авто-рекомендация</label>
+                        <input type="text" class="form-control" v-model="newRule.recommendation" placeholder="Напр: Установить датчики дыма">
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-success w-100" @click="addRule">Добавить</button>
+                    </div>
+                </div>
+
+                <hr>
+                <h5>Активные правила в базе:</h5>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center" v-for="(rule, index) in rules" :key="index">
+                        <div>
+                            <strong>Если:</strong> {{ rule.risk }} <br>
+                            <span class="text-success"><strong>То:</strong> {{ rule.recommendation }}</span>
+                        </div>
+                        <button class="btn btn-sm btn-outline-danger" @click="deleteRule(index)">Удалить</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div v-if="currentTab === 'inspection'">
+        <div class="card">
+            <div class="card-header bg-warning text-dark">
+                Лист осмотра объекта
+            </div>
+            <div class="card-body">
+                <p>Инженер проводит осмотр и отмечает выявленные недостатки.</p>
+                <div class="mb-3">
+                    <label class="form-label">Название объекта</label>
+                    <input type="text" class="form-control" v-model="inspectionData.objectName" placeholder="Склад ООО 'Ромашка'">
+                </div>
+
+                <h5>Чек-лист рисков:</h5>
+                <div v-if="rules.length === 0" class="alert alert-warning">
+                    База знаний пуста. Зайдите в "Админку" и добавьте критерии осмотра.
+                </div>
+                
+                <div class="form-check mb-2" v-for="(rule, index) in rules" :key="index">
+                    <input class="form-check-input" type="checkbox" :id="'risk'+index" :value="rule" v-model="inspectionData.selectedRisks">
+                    <label class="form-check-label" :for="'risk'+index">
+                        {{ rule.risk }}
+                    </label>
+                </div>
+
+                <button class="btn btn-primary mt-3" @click="generateReport">Завершить осмотр и создать отчет</button>
+            </div>
+        </div>
+    </div>
+
+    <div v-if="currentTab === 'report'">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                Итоговый отчет по рискам
+            </div>
+            <div class="card-body" id="printArea">
+                <h4>Объект: {{ inspectionData.objectName || 'Не указан' }}</h4>
+                <hr>
+                <h5>Выявленные нарушения и рекомендации:</h5>
+                
+                <div v-if="inspectionData.selectedRisks.length === 0">
+                    <p class="text-success">Нарушений не выявлено. Объект в идеальном состоянии.</p>
+                </div>
+
+                <table class="table table-bordered mt-3" v-else>
+                    <thead class="table-light">
+                        <tr>
+                            <th>Обнаруженный риск</th>
+                            <th>Автоматическая рекомендация</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in inspectionData.selectedRisks">
+                            <td>{{ item.risk }}</td>
+                            <td class="text-success fw-bold">{{ item.recommendation }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="alert alert-info mt-4">
+                    Это демо. В реальной системе эти данные уйдут в Word.
+                </div>
+                <button class="btn btn-outline-secondary" @click="currentTab = 'inspection'">Назад к осмотру</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    const { createApp } = Vue
+
+    createApp({
+        data() {
+            return {
+                currentTab: 'admin', // admin, inspection, report
+                // База знаний (по умолчанию пара примеров)
+                rules: [
+                    { risk: 'Отсутствует система пожаротушения', recommendation: 'Спроектировать и смонтировать АУПТ' },
+                    { risk: 'Горы мусора на территории', recommendation: 'Обеспечить регулярный вывоз ТБО' }
+                ],
+                // Данные для новой записи
+                newRule: { risk: '', recommendation: '' },
+                // Данные текущего осмотра
+                inspectionData: {
+                    objectName: '',
+                    selectedRisks: [] 
+                }
+            }
+        },
+        mounted() {
+            // Пытаемся загрузить сохраненные данные из памяти браузера
+            const savedRules = localStorage.getItem('demo_rules');
+            if (savedRules) {
+                this.rules = JSON.parse(savedRules);
+            }
+        },
+        methods: {
+            addRule() {
+                if(this.newRule.risk && this.newRule.recommendation) {
+                    this.rules.push({ ...this.newRule });
+                    this.newRule.risk = '';
+                    this.newRule.recommendation = '';
+                    this.saveRules();
+                } else {
+                    alert('Заполните оба поля!');
+                }
+            },
+            deleteRule(index) {
+                this.rules.splice(index, 1);
+                this.saveRules();
+            },
+            saveRules() {
+                localStorage.setItem('demo_rules', JSON.stringify(this.rules));
+            },
+            generateReport() {
+                this.currentTab = 'report';
+            }
+        }
+    }).mount('#app')
+</script>
+
 </body>
 </html>
